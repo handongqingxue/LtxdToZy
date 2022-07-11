@@ -7,12 +7,13 @@ import java.net.SocketException;
 
 public class ReceiveDemo {
 	public static void main(String[] args) throws IOException {
-        
+		receiveData();
     }
 	
 	public static void receiveData() {
 		try {
 			DatagramSocket ds=new DatagramSocket(10003); //接收端口号的消息
+			System.out.println("UDP服务器已启动。。。");
 			while(true){
 			    byte[] bys=new byte[1024];
 			    DatagramPacket dp=new DatagramPacket(bys,bys.length);//建立信息包
