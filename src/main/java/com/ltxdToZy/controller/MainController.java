@@ -19,6 +19,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ltxdToZy.udp.ReceiveDemo;
+import com.ltxdToZy.udp.SendDemo;
+
 @Controller
 @RequestMapping(MainController.MODULE_NAME)
 public class MainController {
@@ -30,6 +33,18 @@ public class MainController {
 	public String goTest() {
 		
 		return MODULE_NAME+"/test";
+	}
+
+	@RequestMapping(value="/goSend")
+	public String goSend() {
+		
+		return MODULE_NAME+"/send";
+	}
+
+	@RequestMapping(value="/goReceive")
+	public String goReceive() {
+		
+		return MODULE_NAME+"/receive";
 	}
 	
 	@RequestMapping(value="/newFindRecords")
@@ -57,6 +72,18 @@ public class MainController {
 		finally {
 			return resultMap;
 		}
+	}
+
+	@RequestMapping(value="/sendUDPData")
+	public void sendUDPData() {
+		System.out.println("sendUDPData...");
+		SendDemo.sendData();
+	}
+
+	@RequestMapping(value="/receiveUDPData")
+	public void receiveUDPData() {
+		System.out.println("receiveUDPData...");
+		ReceiveDemo.receiveData();
 	}
 	
 	//post请求后端收不到参数的解决方案：https://blog.csdn.net/xu_lo/article/details/90041606

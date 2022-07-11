@@ -12,7 +12,7 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 $(function(){
-	$.post(path+"main/newFindRecords",
+	$.post(path+"main/sendUDPData",
 		function(){
 		
 		}
