@@ -10,6 +10,7 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 
 //https://blog.csdn.net/qq_40662086/article/details/115165744
+//http://c.biancheng.net/view/1203.html
 public class SendDemo {
 	public static void main(String[] args) throws IOException {
         
