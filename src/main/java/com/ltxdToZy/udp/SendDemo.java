@@ -38,15 +38,11 @@ public class SendDemo {
 			}
 			*/
 			
-		    for(int i=0;i<5;i++)
-		    {
-		    	String text="{\"name\":\"李天亯\",\"x\":100,\"y\":200}";
-		    	//text=new String(text.getBytes("ISO-8859-1"),"UTF-8");
-		        byte[] bys=text.getBytes();
-		        DatagramPacket dp=new DatagramPacket(bys,bys.length,ia,port);
-		        ds.send(dp);
-		        Thread.sleep(1000);
-		    }
+	    	String text="[{\"name\":\"李天亯\",\"x\":100,\"y\":200},{\"name\":\"李天亯\",\"x\":100,\"y\":200},{\"name\":\"李天亯\",\"x\":100,\"y\":200}]";
+	    	//text=new String(text.getBytes("ISO-8859-1"),"UTF-8");
+	        byte[] bys=text.getBytes();
+	        DatagramPacket dp=new DatagramPacket(bys,bys.length,ia,port);
+	        ds.send(dp);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

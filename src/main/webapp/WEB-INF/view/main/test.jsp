@@ -12,12 +12,33 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 $(function(){
+	insertEntityData();
+});
+
+function newFindRecords(){
 	$.post(path+"main/newFindRecords",
 		function(){
 		
 		}
 	,"json");
-});
+}
+
+function login(){
+	$.post(path+"main/login",
+		{tenantId:"sc21090414",userId:"test001",password:"test001"},
+		function(data){
+			console.log(data);
+		}
+	,"json");
+}
+
+function insertEntityData(){
+	$.post(path+"main/insertEntityData",
+		function(){
+		
+		}
+	,"json");
+}
 </script>
 <title>Insert title here</title>
 </head>

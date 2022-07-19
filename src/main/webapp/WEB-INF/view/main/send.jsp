@@ -12,12 +12,16 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 $(function(){
+	setInterval("sendUDPData()","60000");
+});
+
+function sendUDPData(){
 	$.post(path+"main/sendUDPData",
 		function(){
 		
 		}
 	,"json");
-});
+}
 </script>
 <title>Insert title here</title>
 </head>
