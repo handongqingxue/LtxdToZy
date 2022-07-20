@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
@@ -32,10 +33,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.ltxdToZy.entity.*;
 import com.ltxdToZy.udp.*;
 import com.ltxdToZy.utils.*;
@@ -55,9 +59,15 @@ public class MainController {
 	private LoginUserService loginUserService;
 	@Autowired
 	private EntityService entityService;
+	@Autowired
+	private LocationService locationService;
 
 	@RequestMapping(value="/goTest")
-	public String goTest() {
+	public String goTest(HttpServletRequest request) {
+		
+		request.setAttribute("tenantId",Constant.TENANT_ID);
+		request.setAttribute("userId",Constant.USER_ID);
+		request.setAttribute("password",Constant.PASSWORD);
 		
 		return MODULE_NAME+"/test";
 	}
@@ -186,7 +196,7 @@ public class MainController {
 				resultMap.put("message", "用户不存在");
 			}
 			
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -260,6 +270,86 @@ public class MainController {
 		finally {
 			return resultMap;
 		}
+	}
+
+	/**
+	 * 接收推送消息
+	 * @param request
+	 * @param response
+	 * @param json
+	 * @return
+	 */
+	@RequestMapping(value="/receiveData", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> receiveData(HttpServletRequest request, HttpServletResponse response, @RequestBody String json) {
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		com.alibaba.fastjson.JSONObject jsonJO = JSON.parseObject(json);
+		if(jsonJO.containsKey("Location")) {//定位消息
+			System.out.println("更新定位信息...");
+			JSONArray locationJA = jsonJO.getJSONArray("Location");
+			
+			/*
+			System.out.println("size==="+jsonJO.getJSONArray("Location").size());
+			System.out.println("deviceType==="+jsonJO.getJSONArray("Location").getJSONObject(0).getString("deviceType"));
+			System.out.println("uid==="+jsonJO.getJSONArray("Location").getJSONObject(0).getString("uid"));
+			System.out.println("rootAreaId==="+jsonJO.getJSONArray("Location").getJSONObject(0).getInteger("rootAreaId"));
+			System.out.println("areaId==="+jsonJO.getJSONArray("Location").getJSONObject(0).getInteger("areaId"));
+			System.out.println("locationTime==="+jsonJO.getJSONArray("Location").getJSONObject(0).getLong("locationTime"));
+			System.out.println("lostTime==="+jsonJO.getJSONArray("Location").getJSONObject(0).getLong("lostTime"));
+			System.out.println("x==="+jsonJO.getJSONArray("Location").getJSONObject(0).getFloat("x"));
+			System.out.println("y==="+jsonJO.getJSONArray("Location").getJSONObject(0).getFloat("y"));
+			System.out.println("z==="+jsonJO.getJSONArray("Location").getJSONObject(0).getFloat("z"));
+			System.out.println("abslute==="+jsonJO.getJSONArray("Location").getJSONObject(0).getBoolean("abslute"));
+			System.out.println("speed==="+jsonJO.getJSONArray("Location").getJSONObject(0).getFloat("speed"));
+			System.out.println("LocationFloor==="+jsonJO.getJSONArray("Location").getJSONObject(0).getInteger("floor"));
+			System.out.println("out==="+jsonJO.getJSONArray("Location").getJSONObject(0).getBoolean("out"));
+			System.out.println("longitude==="+jsonJO.getJSONArray("Location").getJSONObject(0).getFloat("longitude"));
+			System.out.println("latitude==="+jsonJO.getJSONArray("Location").getJSONObject(0).getFloat("latitude"));
+			System.out.println("altitude==="+jsonJO.getJSONArray("Location").getJSONObject(0).getFloat("altitude"));
+			*/
+			
+			for(int i=0;i<locationJA.size();i++) {
+				com.alibaba.fastjson.JSONObject locationJO = locationJA.getJSONObject(i);
+				String deviceType = locationJO.getString("deviceType");
+				String uid = locationJO.getString("uid");
+				Integer rootAreaId = locationJO.getInteger("rootAreaId");
+				Integer areaId = locationJO.getInteger("areaId");
+				Long locationTime = locationJO.getLong("locationTime");
+				Long lostTime = locationJO.getLong("lostTime");
+				Float x = locationJO.getFloat("x");
+				Float y = locationJO.getFloat("y");
+				Float z = locationJO.getFloat("z");
+				Boolean abslute = locationJO.getBoolean("abslute");
+				Float speed = locationJO.getFloat("speed");
+				Integer floor = locationJO.getInteger("floor");
+				Boolean out = locationJO.getBoolean("out");
+				Float longitude = locationJO.getFloat("longitude");
+				Float latitude = locationJO.getFloat("latitude");
+				Float altitude = locationJO.getFloat("altitude");
+				
+				Location location = new Location();
+				location.setDeviceType(deviceType);
+				location.setUid(uid);
+				location.setRootAreaId(rootAreaId);
+				location.setAreaId(areaId);
+				location.setLocationTime(locationTime);
+				location.setLostTime(lostTime);
+				location.setX(x);
+				location.setY(y);
+				location.setZ(z);
+				location.setAbslute(abslute);
+				location.setSpeed(speed);
+				location.setFloor(floor);
+				location.setOut(out);
+				location.setLongitude(longitude);
+				location.setLatitude(latitude);
+				location.setAltitude(altitude);
+				
+				locationService.add(location);
+			}
+		}
+		return resultMap;
 	}
 	
 	public JSONObject postBody(String serverURL, JSONObject bodyParamJO, String method, HttpServletRequest request) {

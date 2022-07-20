@@ -11,6 +11,9 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
+var tenantId='${requestScope.tenantId}';
+var userId='${requestScope.userId}';
+var password='${requestScope.password}';
 $(function(){
 	insertEntityData();
 });
@@ -25,7 +28,7 @@ function newFindRecords(){
 
 function login(){
 	$.post(path+"main/login",
-		{tenantId:"sc21090414",userId:"test001",password:"test001"},
+		{tenantId:tenantId,userId:userId,password:password},
 		function(data){
 			console.log(data);
 		}
