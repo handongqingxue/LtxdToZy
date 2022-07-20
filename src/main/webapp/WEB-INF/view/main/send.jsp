@@ -15,6 +15,7 @@ $(function(){
 	setInterval("sendUDPData()","60000");
 });
 
+//https://blog.csdn.net/qq_33470469/article/details/81772882
 function sendUDPData(){
 	$.post(path+"main/sendUDPData",
 		function(){

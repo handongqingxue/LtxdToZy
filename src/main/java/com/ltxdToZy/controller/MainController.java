@@ -6,7 +6,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 import java.net.HttpURLConnection;
+import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
@@ -112,9 +115,39 @@ public class MainController {
 	}
 
 	@RequestMapping(value="/sendUDPData")
-	public void sendUDPData() {
+	@ResponseBody
+	public Map<String, Object> sendUDPData() {
 		System.out.println("sendUDPData...");
-		SendDemo.sendData();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		//SendDemo.sendData();
+		DatagramSocket ds=null;
+		try {
+			ds=new DatagramSocket(); //建立通讯socket
+			 
+			BufferedReader br=new BufferedReader(new InputStreamReader(System.in));//读取键盘输入流
+			InetAddress ia = InetAddress.getByName("192.168.2.222");
+			//InetAddress ia = InetAddress.getByName("127.0.0.1");
+		    int port=10003;
+
+			List<Location> locationList=locationService.selectEntityLocation();
+			//System.out.println("size==="+locationList.size());
+			String text=JSON.toJSONString(locationList);
+	    	//String text="[{\"name\":\"李天亯\",\"x\":100,\"y\":200},{\"name\":\"李天亯\",\"x\":100,\"y\":200},{\"name\":\"李天亯\",\"x\":100,\"y\":200}]";
+			//System.out.println("text==="+text);
+	        byte[] bys=text.getBytes();
+	        DatagramPacket dp=new DatagramPacket(bys,bys.length,ia,port);
+	        ds.send(dp);
+	        
+	        resultMap.put("status", "ok");
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			ds.close();
+			return resultMap;
+		}
 	}
 
 	@RequestMapping(value="/receiveUDPData")
@@ -283,6 +316,7 @@ public class MainController {
 	@ResponseBody
 	public Map<String, Object> receiveData(HttpServletRequest request, HttpServletResponse response, @RequestBody String json) {
 
+		//System.out.println("receiveData...");
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		com.alibaba.fastjson.JSONObject jsonJO = JSON.parseObject(json);
 		if(jsonJO.containsKey("Location")) {//定位消息

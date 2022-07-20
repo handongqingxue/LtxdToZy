@@ -162,6 +162,6 @@
 		select count(*) from location where uid=#{uid}
 	</select>
 	<select id="selectEntityLocation" resultType="com.ltxdToZy.entity.Location">
-		select e.`name` entityName,e.entityType,l.floor,l.x,l.y from location l,entity e where l.uid=e.tagId and `out`=0
+		select e.`name` entityName,e.entityType,l.uid,l.floor,l.x,l.y,l.longitude,l.latitude from location l,entity e where l.uid=e.tagId and `out`=0
 	</select>
 </mapper>
