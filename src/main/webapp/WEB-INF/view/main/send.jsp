@@ -12,7 +12,7 @@
 <script type="text/javascript">
 var path='<%=basePath %>';
 $(function(){
-	setInterval("sendUDPData()","60000");
+	setInterval("sendUDPData()","1000");
 });
 
 //https://blog.csdn.net/qq_33470469/article/details/81772882
