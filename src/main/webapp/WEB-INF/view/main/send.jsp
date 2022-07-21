@@ -11,9 +11,21 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
+var macAddress='${requestScope.macAddress}';
+var pushSpace='${requestScope.pushSpace}';
 $(function(){
-	setInterval("sendUDPData()","1000");
+	compareMacAddress();
 });
+
+function compareMacAddress(){
+	$.post(path+"main/getMacAddress",
+		function(data){
+			if(data.macAddress==macAddress){
+				setInterval("sendUDPData()",pushSpace);
+			}
+		}
+	,"json");
+}
 
 //https://blog.csdn.net/qq_33470469/article/details/81772882
 function sendUDPData(){
