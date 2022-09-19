@@ -362,7 +362,7 @@ public class MainController {
 	@ResponseBody
 	public Map<String, Object> receiveData(HttpServletRequest request, HttpServletResponse response, @RequestBody String json) {
 
-		//http://127.0.0.1:8080/LtxdToZy/main/receiveData
+		//http://127.0.0.1:8080/LtxdToZy/main/receiveData ¶©ÔÄµØÖ·
 		//System.out.println("receiveData...");
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		com.alibaba.fastjson.JSONObject jsonJO = JSON.parseObject(json);
