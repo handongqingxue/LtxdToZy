@@ -78,6 +78,7 @@ public class MainController {
 		return MODULE_NAME+"/test";
 	}
 
+	//http://localhost:8080/LtxdToZy/main/goSend
 	@RequestMapping(value="/goSend")
 	public String goSend(HttpServletRequest request) {
 
