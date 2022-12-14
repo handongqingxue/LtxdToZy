@@ -20,6 +20,7 @@ $(function(){
 function compareMacAddress(){
 	$.post(path+"main/getMacAddress",
 		function(data){
+			console.log(data.macAddress+","+macAddress);
 			if(data.macAddress==macAddress){
 				setInterval("sendUDPData()",pushSpace);
 			}

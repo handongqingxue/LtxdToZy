@@ -78,6 +78,7 @@ public class MainController {
 		return MODULE_NAME+"/test";
 	}
 
+	//http://127.0.0.1:8081/position/vueIndex.html#/CurrentLocation
 	//http://localhost:8080/LtxdToZy/main/goSend
 	@RequestMapping(value="/goSend")
 	public String goSend(HttpServletRequest request) {
@@ -132,7 +133,8 @@ public class MainController {
 			ds=new DatagramSocket(); //建立通讯socket
 			 
 			BufferedReader br=new BufferedReader(new InputStreamReader(System.in));//读取键盘输入流
-			InetAddress ia = InetAddress.getByName("192.168.2.222");
+			InetAddress ia = InetAddress.getByName("192.168.1.211");
+			//InetAddress ia = InetAddress.getByName("192.168.2.222");
 			//InetAddress ia = InetAddress.getByName("127.0.0.1");
 		    int port=10003;
 
