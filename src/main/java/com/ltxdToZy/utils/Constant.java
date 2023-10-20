@@ -15,4 +15,21 @@ public class Constant {
 	public static final String TENANT_ID="sc21090413";
 	public static final String USER_ID="test001";
 	public static final String PASSWORD="test001";
+	
+	/**
+	 * RabbitMq接收推送消息的ip
+	 */
+	public static final String CONN_FACTORY_HOST="127.0.0.1";
+	/**
+	 * RabbitMq接收推送消息的端口号
+	 */
+	public static final int CONN_FACTORY_PORT=5672;
+	/**
+	 * RabbitMq接收推送消息的用户名
+	 */
+	public static final String CONN_FACTORY_USERNAME="admin";
+	/**
+	 * RabbitMq接收推送消息的密码
+	 */
+	public static final String CONN_FACTORY_PASSWORD="admin";
 }

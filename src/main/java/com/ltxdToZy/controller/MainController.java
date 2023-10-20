@@ -67,6 +67,8 @@ public class MainController {
 	private EntityService entityService;
 	@Autowired
 	private LocationService locationService;
+	@Autowired
+	private PositionService positionService;
 
 	@RequestMapping(value="/goTest")
 	public String goTest(HttpServletRequest request) {
@@ -138,9 +140,16 @@ public class MainController {
 			//InetAddress ia = InetAddress.getByName("127.0.0.1");
 		    int port=10003;
 
+		    /*
 			List<Location> locationList=locationService.selectEntityLocation();
 			//System.out.println("size==="+locationList.size());
 			String text=JSON.toJSONString(locationList);
+			*/
+			
+			List<Position> positionList=positionService.queryELList();
+			//System.out.println("size==="+positionList.size());
+			String text=JSON.toJSONString(positionList);
+			
 	    	//String text="[{\"name\":\"李天亯\",\"x\":100,\"y\":200},{\"name\":\"李天亯\",\"x\":100,\"y\":200},{\"name\":\"李天亯\",\"x\":100,\"y\":200}]";
 			//System.out.println("text==="+text);
 	        byte[] bys=text.getBytes();

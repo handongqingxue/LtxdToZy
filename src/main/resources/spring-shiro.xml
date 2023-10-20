@@ -25,6 +25,7 @@
 		<property name="filterChainDefinitions">
 			<value>
 				/main/*=anon
+				/serverReceiver/*=anon
 				/resource/**=anon
 				/**=authc
 			</value>

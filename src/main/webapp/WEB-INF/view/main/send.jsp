@@ -11,6 +11,7 @@
 <script type="text/javascript" src="<%=basePath %>resource/js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 var path='<%=basePath %>';
+var serverReceiverPath=path+"serverReceiver/";
 var macAddress='${requestScope.macAddress}';
 var pushSpace='${requestScope.pushSpace}';
 $(function(){
@@ -22,8 +23,18 @@ function compareMacAddress(){
 		function(data){
 			console.log(data.macAddress+","+macAddress);
 			if(data.macAddress==macAddress){
+				receiveMessage();//只有新版真源平台才需要对接这个推送，只要数据有变化就会收到推送消息
 				setInterval("sendUDPData()",pushSpace);
 			}
+		}
+	,"json");
+}
+
+function receiveMessage(){
+	alert(serverReceiverPath)
+	$.post(serverReceiverPath+"receiveMessage",
+		function(){
+		
 		}
 	,"json");
 }
