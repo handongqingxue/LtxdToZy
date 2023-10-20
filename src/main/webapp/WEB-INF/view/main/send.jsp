@@ -31,7 +31,6 @@ function compareMacAddress(){
 }
 
 function receiveMessage(){
-	alert(serverReceiverPath)
 	$.post(serverReceiverPath+"receiveMessage",
 		function(){
 		

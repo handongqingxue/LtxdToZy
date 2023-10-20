@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ltxdToZy.dao.LocationMapper">
- 	<insert id="add" parameterType="com.ltxdToZy.entity.Location">
+<mapper namespace="com.ltxdToZy.dao.v1_3.LocationMapper">
+ 	<insert id="add" parameterType="com.ltxdToZy.entity.v1_3.Location">
  		insert into location
  		<trim prefix="(" suffix=")" suffixOverrides=",">
  			<if test="deviceType!=null">
@@ -107,7 +107,7 @@
  			</if>
  		</trim>
  	</insert>
-	<update id="edit" parameterType="com.ltxdToZy.entity.Location">
+	<update id="edit" parameterType="com.ltxdToZy.entity.v1_3.Location">
 		update location set
 		<trim suffixOverrides=",">
 			<if test="deviceType!=null">
@@ -161,7 +161,7 @@
 	<select id="getCountByUid" resultType="java.lang.Integer">
 		select count(*) from location where uid=#{uid}
 	</select>
-	<select id="selectEntityLocation" resultType="com.ltxdToZy.entity.Location">
+	<select id="selectEntityLocation" resultType="com.ltxdToZy.entity.v1_3.Location">
 		select e.`name` entityName,e.entityType,l.uid,l.floor,l.x,l.y,l.longitude,l.latitude from location l,entity e where l.uid=e.tagId and `out`=0
 	</select>
 </mapper>

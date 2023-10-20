@@ -1,4 +1,4 @@
-package com.ltxdToZy.entity;
+package com.ltxdToZy.entity.v3_1;
 
 public class Position {
 

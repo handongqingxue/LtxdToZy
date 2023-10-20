@@ -1,4 +1,4 @@
-package com.ltxdToZy.entity;
+package com.ltxdToZy.entity.v1_3;
 
 public class LoginUser {
 

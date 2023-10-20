@@ -1,8 +1,9 @@
-package com.ltxdToZy.service;
+package com.ltxdToZy.service.v3_1;
 
 import java.util.List;
 
-import com.ltxdToZy.entity.*;
+import com.ltxdToZy.entity.v1_3.*;
+import com.ltxdToZy.entity.v3_1.Position;
 
 public interface PositionService {
 

@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ltxdToZy.dao.EntityMapper">
- 	<insert id="add" parameterType="com.ltxdToZy.entity.Entity">
+<mapper namespace="com.ltxdToZy.dao.v1_3.EntityMapper">
+ 	<insert id="add" parameterType="com.ltxdToZy.entity.v1_3.Entity">
  		insert into entity
  		<trim prefix="(" suffix=")" suffixOverrides=",">
  			<if test="tagId!=null">
@@ -89,7 +89,7 @@
  			</if>
  		</trim>
  	</insert>
-	<update id="edit" parameterType="com.ltxdToZy.entity.Entity">
+	<update id="edit" parameterType="com.ltxdToZy.entity.v1_3.Entity">
 		update entity set
 		<trim suffixOverrides=",">
 			<if test="tagId!=null">
@@ -131,7 +131,7 @@
 		</trim>
 		where id=#{id}
 	</update>
- 	<select id="querySelectData" resultType="com.ltxdToZy.entity.Entity">
+ 	<select id="querySelectData" resultType="com.ltxdToZy.entity.v1_3.Entity">
  		select tagId,name,pid from entity where entityType=#{entityType} and tagId is not null order by name
  	</select>
 	<select id="getCountById" resultType="java.lang.Integer">

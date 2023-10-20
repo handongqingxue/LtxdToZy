@@ -1,10 +1,10 @@
-package com.ltxdToZy.dao;
+package com.ltxdToZy.dao.v1_3;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.ltxdToZy.entity.*;
+import com.ltxdToZy.entity.v1_3.*;
 
 public interface EntityMapper {
 

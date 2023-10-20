@@ -29,8 +29,10 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 //https://www.codenong.com/cs106100031/
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.ltxdToZy.entity.*;
-import com.ltxdToZy.service.*;
+import com.ltxdToZy.entity.v1_3.*;
+import com.ltxdToZy.entity.v3_1.Position;
+import com.ltxdToZy.service.v1_3.*;
+import com.ltxdToZy.service.v3_1.PositionService;
 
 //这个类用来接收人员位置的推送信息和报警推送信息
 @Component
