@@ -6,12 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ltxdToZy.dao.v1_3.*;
-import com.ltxdToZy.dao.v3_1.PositionMapper;
-import com.ltxdToZy.entity.v1_3.*;
-import com.ltxdToZy.entity.v3_1.Position;
-import com.ltxdToZy.service.v1_3.*;
-import com.ltxdToZy.service.v3_1.PositionService;
+import com.ltxdToZy.dao.v3_1.*;
+import com.ltxdToZy.entity.v3_1.*;
+import com.ltxdToZy.service.v3_1.*;
 
 @Service
 public class PositionServiceImpl implements PositionService {

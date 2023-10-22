@@ -9,9 +9,9 @@ import com.ltxdToZy.entity.v3_1.Position;
 
 public interface PositionMapper {
 
-	int add(@Param("position")Position position);
+	int add(Position position);
 
-	int edit(@Param("position")Position position);
+	int edit(Position position);
 
 	int getCountByTagId(@Param("tagId")String tagId);
 

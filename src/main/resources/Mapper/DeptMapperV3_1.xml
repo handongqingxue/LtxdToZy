@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ltxdToZy.dao.v3_1.DeptMapper">
+ 	<insert id="add" parameterType="com.ltxdToZy.entity.v3_1.Dept">
+ 		insert into dept
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="deptId!=null">
+ 				deptId,
+ 			</if>
+ 			<if test="parentId!=null">
+ 				parentId,
+ 			</if>
+ 			<if test="ancestors!=null">
+ 				ancestors,
+ 			</if>
+ 			<if test="deptName!=null">
+ 				deptName,
+ 			</if>
+ 			<if test="orderNum!=null">
+ 				orderNum,
+ 			</if>
+ 			<if test="leader!=null">
+ 				leader,
+ 			</if>
+ 			<if test="phone!=null">
+ 				phone,
+ 			</if>
+ 			<if test="email!=null">
+ 				email,
+ 			</if>
+ 			<if test="status!=null">
+ 				status,
+ 			</if>
+ 			<if test="delFlag!=null">
+ 				delFlag,
+ 			</if>
+ 			<if test="createBy!=null">
+ 				createBy,
+ 			</if>
+ 			<if test="createTime!=null">
+ 				createTime,
+ 			</if>
+ 			<if test="updateBy!=null">
+ 				updateBy,
+ 			</if>
+ 			<if test="updateTime!=null">
+ 				updateTime,
+ 			</if>
+ 			<if test="remark!=null">
+ 				remark,
+ 			</if>
+ 		</trim>
+ 		values
+ 		<trim prefix="(" suffix=")" suffixOverrides=",">
+ 			<if test="deptId!=null">
+ 				#{deptId},
+ 			</if>
+ 			<if test="parentId!=null">
+ 				#{parentId},
+ 			</if>
+ 			<if test="ancestors!=null">
+ 				#{ancestors},
+ 			</if>
+ 			<if test="deptName!=null">
+ 				#{deptName},
+ 			</if>
+ 			<if test="orderNum!=null">
+ 				#{orderNum},
+ 			</if>
+ 			<if test="leader!=null">
+ 				#{leader},
+ 			</if>
+ 			<if test="phone!=null">
+ 				#{phone},
+ 			</if>
+ 			<if test="email!=null">
+ 				#{email},
+ 			</if>
+ 			<if test="status!=null">
+ 				#{status},
+ 			</if>
+ 			<if test="delFlag!=null">
+ 				#{delFlag},
+ 			</if>
+ 			<if test="createBy!=null">
+ 				#{createBy},
+ 			</if>
+ 			<if test="createTime!=null">
+ 				#{createTime},
+ 			</if>
+ 			<if test="updateBy!=null">
+ 				#{updateBy},
+ 			</if>
+ 			<if test="updateTime!=null">
+ 				#{updateTime},
+ 			</if>
+ 			<if test="remark!=null">
+ 				#{remark},
+ 			</if>
+ 		</trim>
+ 	</insert>
+	<update id="edit" parameterType="com.ltxdToZy.entity.v3_1.Dept">
+		update dept set
+		<trim suffixOverrides=",">
+ 			<if test="parentId!=null">
+ 				parentId=#{parentId},
+ 			</if>
+			<if test="ancestors!=null">
+				ancestors=#{ancestors},
+			</if>
+			<if test="deptName!=null">
+				deptName=#{deptName},
+			</if>
+			<if test="orderNum!=null">
+				orderNum=#{orderNum},
+			</if>
+			<if test="dept.leader!=null">
+				leader=#{leader},
+			</if>
+			<if test="phone!=null">
+				phone=#{phone},
+			</if>
+			<if test="email!=null">
+				email=#{email},
+			</if>
+			<if test="status!=null">
+				status=#{status},
+			</if>
+			<if test="delFlag!=null">
+				delFlag=#{delFlag},
+			</if>
+			<if test="createBy!=null">
+				createBy=#{createBy},
+			</if>
+			<if test="createTime!=null">
+				createTime=#{createTime},
+			</if>
+			<if test="updateBy!=null">
+				updateBy=#{updateBy},
+			</if>
+			<if test="updateTime!=null">
+				updateTime=#{updateTime},
+			</if>
+			<if test="remark!=null">
+				remark=#{remark},
+			</if>
+		</trim>
+		where deptId=#{deptId}
+	</update>
+	<select id="getCountByDeptId" resultType="java.lang.Integer">
+		select count(*) from dept where deptId=#{deptId}
+	</select>
+</mapper>

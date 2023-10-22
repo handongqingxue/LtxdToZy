@@ -11,10 +11,16 @@ public class Constant {
 	public static final String PASSWORD="test001";
 	*/
 	public static final String MAC_ADDRESS="D8-BB-C1-2E-4D-9A\\n";
-	public static final String SERVICE_IP="127.0.0.1";
+	public static final String SERVICE_IP_V1_3="127.0.0.1";
+	public static final String SERVICE_IP_V3_1="192.168.1.17";
+	public static final int SERVICE_PORT_V3_1=90;
 	public static final String TENANT_ID="sc21090413";
 	public static final String USER_ID="test001";
 	public static final String PASSWORD="test001";
+	/**
+	 * 密钥
+	 */
+	public static final String CLIENT_SECRET="E9BA5D6C";
 	
 	/**
 	 * RabbitMq接收推送消息的ip
